@@ -1,0 +1,24 @@
+<h1>Contact</h1>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" type="email" required />
+    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+      <small style="color: red;">L'email est requis et doit être valide.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="message">Message:</label>
+    <textarea id="message" formControlName="message" required></textarea>
+    <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
+      <small style="color: red;">Le message est requis et doit contenir moins de 300 caractères.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="contactForm.invalid">Envoyer</button>
+</form>
+
+<div *ngIf="successMessage" style="color: green; margin-top: 10px;">
+  {{ successMessage }}
+</div>
