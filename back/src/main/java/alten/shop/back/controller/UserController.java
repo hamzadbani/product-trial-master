@@ -34,9 +34,8 @@ public class UserController {
                     .password(passwordEncoder.encode(user.getPassword()))
                     .build();
             var savedUser = userRepository.save(userC);
-            ResponseEntity<UserEntity> res = new ResponseEntity<UserEntity>(savedUser, HttpStatus.OK);
-            return res;
+            return new ResponseEntity<>(savedUser, HttpStatus.OK);
         }
-        return new ResponseEntity<String>(Constantes.USER_ALLREADY_EXISTS,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(Constantes.USER_ALLREADY_EXISTS, HttpStatus.BAD_REQUEST);
     }
 }
